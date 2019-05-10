@@ -1,8 +1,6 @@
 package com.xstore.partner;
 
 
-import com.xstore.partner.doc.DocGenerator;
-import com.xstore.partner.doc.cf.CFDocGenerator;
 import org.junit.Test;
 
 import java.util.Properties;

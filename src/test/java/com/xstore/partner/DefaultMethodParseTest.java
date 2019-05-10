@@ -1,8 +1,8 @@
 package com.xstore.partner;
 
 
-import com.xstore.partner.doc.parser.DefaultMethodParser;
-import com.xstore.partner.doc.parser.MethodParser;
+import com.dev.tools.kit.parser.DefaultMethodParser;
+import com.dev.tools.kit.parser.MethodParser;
 import org.junit.Test;
 
 public class DefaultMethodParseTest

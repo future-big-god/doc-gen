@@ -1,8 +1,8 @@
 package com.xstore.partner;
 
 
-import com.xstore.partner.doc.source.LocalProjectSourceReader;
-import com.xstore.partner.doc.source.SourceReader;
+import com.dev.tools.kit.source.LocalProjectSourceReader;
+import com.dev.tools.kit.source.SourceReader;
 import org.junit.Test;
 
 public class LocalProjectSourceReaderTest
