@@ -1,11 +1,16 @@
 package com.dev.tools.kit.domain;
 
+
 /**
- * @Description:
+ * @Description:字段信息
  * @Author: zhangjianfeng
  * @Date: 2018-09-25
  */
 public class FieldInfo {
+    /**
+     * 是否可为空
+     */
+    private Boolean nullAble;
     /**
      * 名称
      */
@@ -18,6 +23,10 @@ public class FieldInfo {
      * 备注
      */
     private String desc;
+
+    public FieldInfo() {
+        this.nullAble = true;
+    }
 
     public String getName() {
         return name;
@@ -41,6 +50,24 @@ public class FieldInfo {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Boolean getNullAble() {
+        return nullAble;
+    }
+
+    public void setNullAble(Boolean nullAble) {
+        this.nullAble = nullAble;
+    }
+
+    @Override
+    public String toString() {
+        return "FieldInfo{" +
+                "nullAble=" + nullAble +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
     }
 
 }

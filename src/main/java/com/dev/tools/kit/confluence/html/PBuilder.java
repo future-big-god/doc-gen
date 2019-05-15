@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  */
 public class PBuilder {
     public String build(String text) {
-        StringBuilder stringBuilder=new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<p>").append(StringEscapeUtils.escapeHtml4(text)).append("</p>");
         return stringBuilder.toString();
     }

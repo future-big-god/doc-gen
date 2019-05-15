@@ -1,7 +1,7 @@
-package com.dev.tools.kit.test;
+package com.dev.tools.kit;
 
-import com.dev.tools.kit.domain.ParamArgus;
-import com.dev.tools.kit.domain.ParamInfo;
+import com.dev.tools.kit.domain.FieldInfo;
+import com.dev.tools.kit.domain.ModelInfo;
 
 /**
  * Created by zhoujun5 on 2018/10/17.
@@ -9,6 +9,7 @@ import com.dev.tools.kit.domain.ParamInfo;
 public interface InterfaceTest {
     /**
      * 简单接口测试
+     *
      * @param id
      * @return
      */
@@ -20,7 +21,7 @@ public interface InterfaceTest {
      * @param d
      * @return
      */
-    ParamInfo retuenComplexInterFace(Long id, Integer d);
+    FieldInfo retuenComplexInterFace(Long id, Integer d);
 
 
     /***
@@ -29,7 +30,7 @@ public interface InterfaceTest {
      * @param d
      * @return
      */
-    ParamArgus retuenSuperComplexInterFace(Long id, Integer d);
+    ModelInfo retuenSuperComplexInterFace(Long id, Integer d);
 
     /***
      * 返回值、参数复杂接口测试
@@ -37,7 +38,7 @@ public interface InterfaceTest {
      * @param d
      * @return
      */
-    ParamArgus retuenAgrusComplexInterFace(ParamInfo id, Integer d);
+    ModelInfo retuenAgrusComplexInterFace(FieldInfo id, Integer d);
 
 
     /***
@@ -46,10 +47,11 @@ public interface InterfaceTest {
      * @param d
      * @return
      */
-    ParamArgus retuenArgusSuperComplexInterFace(ParamArgus id, Integer d);
+    ModelInfo retuenArgusSuperComplexInterFace(ModelInfo id, Integer d);
 
     /**
      * 杀杀杀22
+     *
      * @return
      */
     void simpleInterFace2(Long id);

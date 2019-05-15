@@ -3,31 +3,47 @@ package com.dev.tools.kit.domain;
 import java.util.List;
 
 /**
- * @Description:
+ * @Description:方法信息
  * @Author: zhangjianfeng
  * @Date: 2018-09-25
  */
 public class MethodInfo {
 
+    /**
+     * 接口名称
+     */
     private String interfaceName;
+    /**
+     * 方法名
+     */
     private String methodName;
+    /**
+     * 方法描述
+     */
     private String desc;
-    private List<ParamArgus> paramArgusList;
-    private List<ReturnInfo> returnInfoList;
 
-    public List<ParamArgus> getParamArgusList() {
-        return paramArgusList;
+    /**
+     * 参数信息
+     */
+    private ParamInfo paramInfo;
+    /**
+     * 返回值列表
+     */
+    private List<ModelInfo> returnInfoList;
+
+    public ParamInfo getParamInfo() {
+        return paramInfo;
     }
 
-    public void setParamArgusList(List<ParamArgus> paramArgusList) {
-        this.paramArgusList = paramArgusList;
+    public void setParamInfo(ParamInfo paramInfo) {
+        this.paramInfo = paramInfo;
     }
 
-    public List<ReturnInfo> getReturnInfoList() {
+    public List<ModelInfo> getReturnInfoList() {
         return returnInfoList;
     }
 
-    public void setReturnInfoList(List<ReturnInfo> returnInfoList) {
+    public void setReturnInfoList(List<ModelInfo> returnInfoList) {
         this.returnInfoList = returnInfoList;
     }
 
@@ -55,4 +71,14 @@ public class MethodInfo {
         this.desc = desc;
     }
 
+    @Override
+    public String toString() {
+        return "MethodInfo{" +
+                "interfaceName='" + interfaceName + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", desc='" + desc + '\'' +
+                ", paramInfo=" + paramInfo +
+                ", returnInfoList=" + returnInfoList +
+                '}';
+    }
 }

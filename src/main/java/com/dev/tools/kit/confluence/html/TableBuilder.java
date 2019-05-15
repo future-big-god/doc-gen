@@ -17,13 +17,14 @@ public class TableBuilder {
     private TableTitleRowBuilder tableTitleRowBuilder;
     private TableContentRowsBuilder tableContentRowsBuilder;
 
-    public TableBuilder(){
-         tableHeaderBuilder=new TableHeaderBuilder();
-         tableTitleRowBuilder=new TableTitleRowBuilder();
-         tableContentRowsBuilder=new TableContentRowsBuilder();
+    public TableBuilder() {
+        tableHeaderBuilder = new TableHeaderBuilder();
+        tableTitleRowBuilder = new TableTitleRowBuilder();
+        tableContentRowsBuilder = new TableContentRowsBuilder();
     }
+
     public String build(TableInfo tableInfo) {
-        StringBuilder stringBuilder=new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table class=\"confluenceTable\"><tbody>");
         stringBuilder.append(tableHeaderBuilder.build(tableInfo.getHeader()));
         stringBuilder.append(tableTitleRowBuilder.build(tableInfo.getTitleRow()));
@@ -31,23 +32,24 @@ public class TableBuilder {
         stringBuilder.append("</tbody></table>");
         return stringBuilder.toString();
     }
-    class TableHeaderBuilder{
-        protected String  build(String text){
-            StringBuilder stringBuilder=new StringBuilder();
+
+    class TableHeaderBuilder {
+        protected String build(String text) {
+            StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("<tr><th class=\"confluenceTh\" colspan=\"4\">").append(StringEscapeUtils.escapeHtml4(text))
-                         .append("</th></tr>");
+                    .append("</th></tr>");
             return stringBuilder.toString();
         }
     }
-    class  TableTitleRowBuilder{
-        protected String  build(TableRow tableRow){
-            if (tableRow == null)
-            {
+
+    class TableTitleRowBuilder {
+        protected String build(TableRow tableRow) {
+            if (tableRow == null) {
                 return "";
             }
-            StringBuilder stringBuilder=new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("<tr>");
-            for(String value:tableRow.getValues()){
+            for (String value : tableRow.getValues()) {
                 stringBuilder.append("<td class=\"confluenceTd\">");
                 stringBuilder.append(StringEscapeUtils.escapeHtml4(value));
                 stringBuilder.append("</td>");
@@ -56,14 +58,14 @@ public class TableBuilder {
             return stringBuilder.toString();
         }
     }
-    class  TableContentRowsBuilder{
-        protected String build(List<TableRow> tableRows){
-            if (tableRows == null)
-            {
+
+    class TableContentRowsBuilder {
+        protected String build(List<TableRow> tableRows) {
+            if (tableRows == null) {
                 return "";
             }
-            StringBuilder stringBuilder=new StringBuilder();
-            for(TableRow tableRow:tableRows){
+            StringBuilder stringBuilder = new StringBuilder();
+            for (TableRow tableRow : tableRows) {
                 stringBuilder.append(tableTitleRowBuilder.build(tableRow));
             }
             return stringBuilder.toString();

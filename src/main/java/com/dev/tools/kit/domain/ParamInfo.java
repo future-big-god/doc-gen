@@ -1,25 +1,49 @@
 package com.dev.tools.kit.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @Description:
- * @Author: zhangjianfeng
- * @Date: 2018-09-25
+ * @author zhoujun5
+ * @date 2019/5/20
  */
-public class ParamInfo extends FieldInfo {
+public class ParamInfo {
     /**
-     * 是否可为空
+     * 参数列表
      */
-    private Boolean nullAble;
+    List<FieldInfo> paramArgus;
 
-    public Boolean getNullAble() {
-        return nullAble;
+    /**
+     * 参数属性列表
+     */
+    List<ModelInfo> paramArgusAttres;
+
+    public ParamInfo() {
+        paramArgus = new ArrayList<>();
+        paramArgusAttres = new ArrayList<>();
     }
 
-    public void setNullAble(Boolean nullAble) {
-        this.nullAble = nullAble;
+    public List<FieldInfo> getParamArgus() {
+        return paramArgus;
     }
 
-    public ParamInfo(){
-        this.nullAble=true;
+    public void setParamArgus(List<FieldInfo> paramArgus) {
+        this.paramArgus = paramArgus;
+    }
+
+    public List<ModelInfo> getParamArgusAttres() {
+        return paramArgusAttres;
+    }
+
+    public void setParamArgusAttres(List<ModelInfo> paramArgusAttres) {
+        this.paramArgusAttres = paramArgusAttres;
+    }
+
+    @Override
+    public String toString() {
+        return "ParamInfo{" +
+                "paramArgus=" + paramArgus +
+                ", paramArgusAttres=" + paramArgusAttres +
+                '}';
     }
 }

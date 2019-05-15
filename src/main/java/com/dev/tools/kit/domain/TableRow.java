@@ -17,5 +17,10 @@ public class TableRow {
         this.values = values;
     }
 
-
+    @Override
+    public String toString() {
+        return "TableRow{" +
+                "values=" + values +
+                '}';
+    }
 }

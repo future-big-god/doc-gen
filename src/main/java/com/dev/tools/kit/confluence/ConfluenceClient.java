@@ -1,11 +1,18 @@
 package com.dev.tools.kit.confluence;
 
-import com.dev.tools.kit.domain.GetResult;
-
+/**
+ * @Description: ConfluenceClient
+ * @Author:zhangjianfeng5
+ * @Date: 2019/5/15
+ * @Time: 下午4:16
+ */
 public interface ConfluenceClient {
-    void createPage(String locationId, String title,String content);
-
-    void updatePage(String pageId,String title,String content);
-
-    GetResult getPageByTitle(String spaceKey,String title);
+    /**
+     * 生成文档为Confluence页面
+     *
+     * @param locationId
+     * @param title
+     * @param content
+     */
+    void createPage(String locationId, String title, String content);
 }
