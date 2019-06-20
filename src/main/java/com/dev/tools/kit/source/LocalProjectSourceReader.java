@@ -1,7 +1,5 @@
 package com.dev.tools.kit.source;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -13,7 +11,6 @@ import java.util.regex.Matcher;
  * @Date: 2018-09-27
  */
 public class LocalProjectSourceReader implements SourceReader {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private String srcRootPath;
 
@@ -47,7 +44,6 @@ public class LocalProjectSourceReader implements SourceReader {
                 line = reader.readLine();
             }
         } catch (IOException e) {
-            logger.error("read error", e);
             throw new RuntimeException(e);
         } finally {
             close(reader);
@@ -60,7 +56,6 @@ public class LocalProjectSourceReader implements SourceReader {
             try {
                 reader.close();
             } catch (IOException e) {
-                logger.error("close error", e);
             }
         }
     }
