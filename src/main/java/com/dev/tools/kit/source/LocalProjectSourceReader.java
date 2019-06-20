@@ -1,10 +1,11 @@
 package com.dev.tools.kit.source;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.regex.Matcher;
 
-import static com.dev.tools.kit.ConfigConstants.PROJECT_JAVA_PATH;
 
 /**
  * @Description:通过本地项目获取内容的Reader
@@ -12,10 +13,12 @@ import static com.dev.tools.kit.ConfigConstants.PROJECT_JAVA_PATH;
  * @Date: 2018-09-27
  */
 public class LocalProjectSourceReader implements SourceReader {
-    private String projectRootPath;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public LocalProjectSourceReader(String projectRootPath) {
-        this.projectRootPath = projectRootPath;
+    private String srcRootPath;
+
+    public LocalProjectSourceReader(String srcRootPath) {
+        this.srcRootPath = srcRootPath;
     }
 
     @Override
@@ -24,32 +27,19 @@ public class LocalProjectSourceReader implements SourceReader {
     }
 
     private String getSourceLocation(String interfaceName) {
-        return this.projectRootPath + getProjectJavaPath() + interfaceName.replaceAll("[.]", Matcher.quoteReplacement(File.separator)) + ".java";
+        return this.srcRootPath + interfaceName.replaceAll("[.]", Matcher.quoteReplacement(File.separator)) + ".java";
     }
 
     private String getSourceContent(String interfaceName) {
         return readToBuffer(getSourceLocation(interfaceName));
     }
 
-    private String getProjectJavaPath()
-    {
-        if( System.getProperty(PROJECT_JAVA_PATH) != null)
-        {
-            return System.getProperty(PROJECT_JAVA_PATH);
-        }
-        if(System.getenv().get(PROJECT_JAVA_PATH) != null)
-        {
-            return System.getenv().get(PROJECT_JAVA_PATH);
-        }
-        return File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
-    }
-
-    private String readToBuffer(String filePath){
+    private String readToBuffer(String filePath) {
         StringBuffer buffer = new StringBuffer();
         String line;
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-8"));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
             line = reader.readLine();
             while (line != null) {
                 buffer.append(line);
@@ -57,19 +47,22 @@ public class LocalProjectSourceReader implements SourceReader {
                 line = reader.readLine();
             }
         } catch (IOException e) {
+            logger.error("read error", e);
             throw new RuntimeException(e);
-        }
-        finally {
-            if(reader != null)
-            {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        } finally {
+            close(reader);
         }
         return buffer.toString();
+    }
+
+    private void close(BufferedReader reader) {
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                logger.error("close error", e);
+            }
+        }
     }
 
 }

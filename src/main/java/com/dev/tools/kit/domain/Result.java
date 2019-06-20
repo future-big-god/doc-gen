@@ -6,6 +6,8 @@ package com.dev.tools.kit.domain;
 public class Result {
     private String id;
     private String type;
+    private String title;
+    private String status;
 
     public String getId() {
         return id;
@@ -39,6 +41,13 @@ public class Result {
         this.status = status;
     }
 
-    private String title;
-    private String status;
+    @Override
+    public String toString() {
+        return "Result{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

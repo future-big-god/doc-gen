@@ -3,7 +3,7 @@ package com.dev.tools.kit.domain;
 import java.util.List;
 
 /**
- * @Description:
+ * @Description:表
  * @Author: zhangjianfeng
  * @Date: 2018-09-26
  */
@@ -11,6 +11,7 @@ public class TableInfo {
     private String header;
     private TableRow titleRow;
     private List<TableRow> contentRows;
+
     public String getHeader() {
         return header;
     }
@@ -35,4 +36,13 @@ public class TableInfo {
         this.contentRows = contentRows;
     }
 
+
+    @Override
+    public String toString() {
+        return "TableInfo{" +
+                "header='" + header + '\'' +
+                ", titleRow=" + titleRow +
+                ", contentRows=" + contentRows +
+                '}';
+    }
 }

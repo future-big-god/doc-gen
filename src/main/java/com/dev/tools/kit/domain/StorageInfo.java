@@ -24,5 +24,11 @@ public class StorageInfo {
         this.representation = representation;
     }
 
-
+    @Override
+    public String toString() {
+        return "StorageInfo{" +
+                "value='" + value + '\'' +
+                ", representation='" + representation + '\'' +
+                '}';
+    }
 }

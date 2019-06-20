@@ -1,7 +1,7 @@
 package com.dev.tools.kit.http;
 
 /**
- * @Description:
+ * @Description:认证信息
  * @Author: zhangjianfeng
  * @Date: 2018-09-26
  */

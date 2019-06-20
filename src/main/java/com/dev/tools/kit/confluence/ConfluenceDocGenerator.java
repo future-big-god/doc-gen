@@ -1,13 +1,16 @@
 package com.dev.tools.kit.confluence;
 
+import com.dev.tools.kit.DocContentBuilder;
 import com.dev.tools.kit.DocGenerator;
+import com.dev.tools.kit.DocWriter;
+import com.dev.tools.kit.confluence.html.ConfluenceDocContentBuilder;
+import com.dev.tools.kit.domain.DocInfo;
 import com.dev.tools.kit.parser.DefaultMethodParser;
 import com.dev.tools.kit.parser.MethodParser;
-import com.dev.tools.kit.DocWriter;
 
 
 /**
- * @Description:
+ * @Description:Confluence文档生成器
  * @Author: zhangjianfeng
  * @Date: 2018-09-25
  */
@@ -15,30 +18,34 @@ public class ConfluenceDocGenerator implements DocGenerator {
 
     private MethodParser methodParser;
     private DocWriter docWriter;
+    private DocContentBuilder docContentBuilder;
 
-    public ConfluenceDocGenerator(String projectRootPath) {
-        this.methodParser = new DefaultMethodParser(projectRootPath);
+    public ConfluenceDocGenerator(String srcRootPath) {
+        this.methodParser = new DefaultMethodParser(srcRootPath);
         this.docWriter = new ConfluenceDocWriter();
+        this.docContentBuilder = new ConfluenceDocContentBuilder();
     }
 
 
     @Override
-    public void generate(String methodId, String locationId) {
-        this.docWriter.write2Cf(locationId,this.methodParser.parse(methodId));
+    public void generateAndWrite(String methodId, String locationId) {
+        this.docWriter.write(locationId,
+                docContentBuilder.build(
+                        this.methodParser.parse(methodId)));
     }
 
     @Override
-    public void batchGenerate(String interfaceName, String[] methodIds, String locationId) {
-        if(methodIds==null || methodIds.length<=0){
-            return ;
+    public void batchGenerateAndWrite(String interfaceName, String[] methodIds, String locationId) {
+        if (methodIds == null || methodIds.length <= 0) {
+            return;
         }
-        for(String methodId:methodIds){
-            this.generate(interfaceName+"#"+methodId,locationId);
+        for (String methodId : methodIds) {
+            this.generateAndWrite(interfaceName + "#" + methodId, locationId);
         }
     }
 
     @Override
-    public void write2Console(String methodId) {
-        this.docWriter.write2Console(this.methodParser.parse(methodId));
+    public DocInfo generate(String methodId) {
+        return docContentBuilder.build(this.methodParser.parse(methodId));
     }
 }

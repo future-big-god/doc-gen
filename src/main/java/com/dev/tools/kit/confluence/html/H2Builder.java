@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  */
 public class H2Builder {
     public String build(String text) {
-        StringBuilder stringBuilder=new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<h2>").append(StringEscapeUtils.escapeHtml4(text)).append("</h2>");
         return stringBuilder.toString();
     }
