@@ -7,8 +7,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -21,7 +19,6 @@ public class HttpClient {
 
     private static final int successCode = 200;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public String sendJsonPost(String url, String content, Auth auth) {
 
@@ -52,14 +49,12 @@ public class HttpClient {
             try {
                 response.close();
             } catch (IOException e) {
-                logger.error("close error", e);
             }
         }
         if (httpclient != null) {
             try {
                 httpclient.close();
             } catch (IOException e) {
-                logger.error("close error", e);
             }
         }
     }
