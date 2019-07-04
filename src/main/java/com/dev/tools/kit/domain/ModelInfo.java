@@ -78,8 +78,13 @@ public class ModelInfo {
             String fieldLine = matcher.group(2);
             FieldInfo fieldInfo = new FieldInfo();
             fieldInfo.setDesc(ParseUtils.genDesc(Arrays.asList(commentLine.split("\n"))));
-            fieldInfo.setName(ParseUtils.extractStr(fieldLine, "\\s+?(\\w+)[;]", 1));
-            fieldInfo.setType(ParseUtils.extractStr(fieldLine.trim(), "(private)?\\s*(.+?)\\s", 2));
+            //如果出现 A a=new A();的情况就获取不到name了，所以这里做下兼容
+            String name=ParseUtils.extractStr(fieldLine, "\\s+?(\\w+);", 1);
+            if(name==null){
+               name=ParseUtils.extractStr(fieldLine, "\\s+?(\\w+\\s+)=", 1);
+            }
+            fieldInfo.setName(name);
+            fieldInfo.setType(ParseUtils.extractStr(fieldLine.trim(), "(private)\\s*(.+?)\\s", 2));
             ImportLinesParser importLinesParser = new ImportLinesParser();
             importLinesParser.parse(sourceContent);
             fieldInfos.add(fieldInfo);

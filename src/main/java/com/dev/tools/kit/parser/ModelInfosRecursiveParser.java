@@ -38,13 +38,16 @@ public class ModelInfosRecursiveParser {
     private void genModelInfoList(String type, String className, List<String> importLines, String srcRootPath) {
         ModelInfo modelInfo = new ModelInfo();
         modelInfo.setType(type);
-        modelInfo.setActureType(ParseUtils.genFullType(ParseUtils.genRealTypeShort(type), className, importLines));
+        modelInfo.setActureType(ParseUtils.isBaseType(ParseUtils.genRealTypeShort(type))?ParseUtils.genRealTypeShort(type):ParseUtils.genFullType(ParseUtils.genRealTypeShort(type), className, importLines));
+        if(ParseUtils.isBaseType(modelInfo.getActureType())){
+            return;
+        }
         modelInfo.parseFieldInfos(srcRootPath);
         for (FieldInfo fieldInfo : modelInfo.getFieldInfoList()) {
-            if (!ParseUtils.isBaseType(fieldInfo.getType()) && !isParentType(modelInfo.getActureType(), fieldInfo.getType())) {
-                genModelInfoList(fieldInfo.getType(), modelInfo.getActureType(), importLines, srcRootPath);
+                if (!ParseUtils.isBaseType(fieldInfo.getType()) && !isParentType(modelInfo.getActureType(), fieldInfo.getType())) {
+                    genModelInfoList(fieldInfo.getType(), modelInfo.getActureType(), importLines, srcRootPath);
+                }
             }
-        }
         modelInfos.add(modelInfo);
     }
 

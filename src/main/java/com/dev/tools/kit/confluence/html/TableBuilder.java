@@ -24,6 +24,9 @@ public class TableBuilder {
     }
 
     public String build(TableInfo tableInfo) {
+        if(tableInfo==null){
+            return "";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table class=\"confluenceTable\"><tbody>");
         stringBuilder.append(tableHeaderBuilder.build(tableInfo.getHeader()));

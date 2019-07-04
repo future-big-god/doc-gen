@@ -10,9 +10,9 @@ public class CfHtmlGenerator {
     @Test
     public void gemHtml() {
         //配置项目内的java路径 默认为/src/main/java/
-        DocGenerator docGenerator = new ConfluenceDocGenerator("/Users/zhangjianfeng5/IdeaProjects/shelf/xstore-shelf-space-center/xstore-shelf-space-api/src/main/java/");
+        DocGenerator docGenerator = new ConfluenceDocGenerator("D:/project/xstore-agreement-center/xstore-agreement-center-api/src/main/java/");
         DocInfo docInfo = docGenerator.generate(
-                "com.xstore.shelf.space.api.category.CategoryService#getCategoryGeneral");
+                "com.jd.xstore.agreement.center.api.service.AgreementSettleService#getDistributorAgrtSettleByAgrtId");
         Assert.assertNotNull(docInfo);
         System.out.println(docInfo.getContent());
     }

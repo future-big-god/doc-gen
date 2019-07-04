@@ -5,6 +5,7 @@ import com.dev.tools.kit.domain.ModelInfo;
 import com.dev.tools.kit.domain.ParamInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -81,7 +82,7 @@ public class ParamArgusParser {
 
             return paramFieldInfos;
         }
-        String commentLineString = commentLines.toString();
+        String commentLineString = convertList2String(commentLines);
         for (FieldInfo paramFieldInfo : paramFieldInfos) {
             paramFieldInfo.setDesc("无");
             String desc = ParseUtils.extractStr(commentLineString, "[*]\\s*@param\\s+" + paramFieldInfo.getName() + "\\s+(.+?)\\s", 1);
@@ -90,5 +91,15 @@ public class ParamArgusParser {
             }
         }
         return paramFieldInfos;
+    }
+    private String convertList2String(List<String> strings){
+        if(strings==null || strings.size()<=0){
+            return "";
+        }
+        StringBuilder stringBuilder=new StringBuilder();
+        for(String s:strings){
+            stringBuilder.append(s);
+        }
+        return stringBuilder.toString();
     }
 }

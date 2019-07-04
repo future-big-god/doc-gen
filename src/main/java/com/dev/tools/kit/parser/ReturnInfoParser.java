@@ -2,6 +2,7 @@ package com.dev.tools.kit.parser;
 
 import com.dev.tools.kit.domain.ModelInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,11 +11,11 @@ import java.util.List;
  * @Date: 2019-05-23
  */
 public class ReturnInfoParser {
-    private List<ModelInfo> returnModels;
+    private List<ModelInfo> returnModels=new ArrayList<>();
 
     public void parse(String interfaceName, String methodLine, List<String> importLines, String srcRootPath) {
         String returnType = getReturnType(methodLine);
-        if (returnType == null || "void".equals(returnType) || ParseUtils.isBaseType(returnType)) {
+        if (returnType == null || "void".equals(returnType) || ParseUtils.isBaseType(returnType) || ParseUtils.isBaseType(ParseUtils.genRealTypeShort(returnType))) {
             ModelInfo modelInfo = new ModelInfo();
             modelInfo.setType(returnType);
             this.getReturnModels().add(modelInfo);
@@ -36,7 +37,8 @@ public class ReturnInfoParser {
      * @return
      */
     private String getReturnType(String methodLine) {
-        return ParseUtils.extractStr(methodLine, "\\s*(.+)\\s.+[(]", 1);
+     //   ParseUtils.extractStr(methodLine, "\\s*(.+)\\s.+[(]", 1);
+        return ParseUtils.extractStr(methodLine, " (\\S+)\\s+(\\S+)[(]", 1);
     }
 
 }

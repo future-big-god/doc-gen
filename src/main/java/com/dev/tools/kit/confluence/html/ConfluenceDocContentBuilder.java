@@ -31,8 +31,7 @@ public class ConfluenceDocContentBuilder implements DocContentBuilder {
         html.append(h2Builder.build("接口"))
                 .append(pBuilder.build(methodInfo.getInterfaceName()))
                 .append(h2Builder.build("方法"))
-                .append(pBuilder.build(methodInfo.getMethodName()))
-                .append(h2Builder.build("参数"));
+                .append(pBuilder.build(methodInfo.getMethodName()));
         //参数构建
         html.append(h2Builder.build("参数"));
         html.append(tableBuilder.build(genTableInfo(methodInfo.getParamInfo().getParamArgus())));
@@ -53,6 +52,9 @@ public class ConfluenceDocContentBuilder implements DocContentBuilder {
     }
 
     private TableInfo genTableInfo(ModelInfo returnInfo) {
+        if(returnInfo.getActureType()==null){
+            return null;
+        }
         TableInfo tableInfo = new TableInfo();
         tableInfo.setHeader(returnInfo.getActureType());
         if (returnInfo.getFieldInfoList() == null || returnInfo.getFieldInfoList().size() == 0) {
