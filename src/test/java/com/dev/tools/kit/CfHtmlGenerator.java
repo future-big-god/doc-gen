@@ -12,7 +12,7 @@ public class CfHtmlGenerator {
         //配置项目内的java路径 默认为/src/main/java/
         DocGenerator docGenerator = new ConfluenceDocGenerator("D:/project/xstore-agreement-center/xstore-agreement-center-api/src/main/java/");
         DocInfo docInfo = docGenerator.generate(
-                "com.jd.xstore.agreement.center.api.service.AgreementSettleService#getDistributorAgrtSettleByAgrtId");
+                "com.xx.xstore.agreement.center.api.service.AgreementSettleService#getDistributorAgrtSettleByAgrtId");
         Assert.assertNotNull(docInfo);
         System.out.println(docInfo.getContent());
     }

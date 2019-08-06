@@ -22,7 +22,7 @@ public class DocInfoBuilderTest {
         methodInfo.setInterfaceName("com.xstore.partner.center.api.supplierproduct.SupplierProductService");
         methodInfo.setMethodName("getvenderBaseById");
         ModelInfo returnInfo = new ModelInfo();
-        returnInfo.setActureType("com.jd.venderBase");
+        returnInfo.setActureType("com.xx.venderBase");
         returnInfo.setType("VenderBase");
         List<FieldInfo> fieldInfoList = new ArrayList<>();
         FieldInfo fieldInfo = new FieldInfo();
