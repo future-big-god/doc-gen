@@ -26,6 +26,11 @@ public class ConfluenceDocGenerator implements DocGenerator {
         this.docContentBuilder = new ConfluenceDocContentBuilder();
     }
 
+    public ConfluenceDocGenerator(MethodParser methodParser) {
+        this.methodParser = methodParser;
+        this.docWriter = new ConfluenceDocWriter();
+        this.docContentBuilder = new ConfluenceDocContentBuilder();
+    }
 
     @Override
     public void generateAndWrite(String methodId, String locationId) {

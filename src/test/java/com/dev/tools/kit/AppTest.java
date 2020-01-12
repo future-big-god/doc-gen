@@ -20,5 +20,7 @@ public class AppTest {
                 "com.xstore.shelf.space.api.store.StoreService", new String[]{"getAll"},
                 "175925724");
     }
+
+
 }
 

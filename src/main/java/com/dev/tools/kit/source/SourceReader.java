@@ -11,4 +11,11 @@ public interface SourceReader {
      * @return
      */
     String readContent(String className);
+
+    /**
+     * 获取接口在磁盘的位置
+     * @param interfaceName
+     * @return
+     */
+    String getSourceLocation(String interfaceName);
 }

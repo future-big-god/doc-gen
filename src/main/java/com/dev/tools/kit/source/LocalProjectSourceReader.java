@@ -23,7 +23,9 @@ public class LocalProjectSourceReader implements SourceReader {
         return getSourceContent(className);
     }
 
-    private String getSourceLocation(String interfaceName) {
+
+    @Override
+    public String getSourceLocation(String interfaceName) {
         return this.srcRootPath + interfaceName.replaceAll("[.]", Matcher.quoteReplacement(File.separator)) + ".java";
     }
 

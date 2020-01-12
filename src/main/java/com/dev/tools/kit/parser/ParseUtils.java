@@ -65,6 +65,13 @@ public class ParseUtils {
     }
 
 
+    public static boolean isBaseLetter(String type){
+        Matcher matcher = Pattern.compile("[A-Z]").matcher(type);
+        if (matcher.find()) {
+            return true;
+        }
+        return false;
+    }
     /**
      * 从注释行中获取描述
      *
