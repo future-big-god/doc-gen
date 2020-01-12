@@ -23,7 +23,7 @@ public class CfHtmlGenerator {
     @Test
     public void testJavaDoc(){
         //配置项目内的java路径 默认为/src/main/java/
-        String srcRootPath="/Users/zhoujun/Documents/jdproject/commission-center/xstore-asset-commission-center-api/src/main/java/:";
+        String srcRootPath="/Users/zhoujun/Documents/jdproject/commission-center/xstore-asset-commission-center-api/src/main/java/";
         MethodParser methodParser=new JavaDocMethodParser(srcRootPath);
         DocGenerator docGenerator = new ConfluenceDocGenerator(methodParser);
         DocInfo docInfo = docGenerator.generate(
