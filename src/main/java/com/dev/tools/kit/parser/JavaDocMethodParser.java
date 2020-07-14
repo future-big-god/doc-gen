@@ -44,7 +44,10 @@ public class JavaDocMethodParser implements  MethodParser{
                 JavaDocMethodParser.Doclet.class.getName(),
                 "-encoding","utf-8","-sourcepath",
                 this.srcRootPath,
-                sourcePath});
+                sourcePath,
+                "-classpath",
+                "D:\\project\\xstore-group-commission\\xstore-group-commission-web\\target\\xstore-group-commission-web-0.0.1-SNAPSHOT\\WEB-INF\\lib\\xstore-commons-data-1.0.0-SNAPSHOT.jar"
+                });
 
         MethodDoc methodDoc=buildMethodDoc(interfaceName,methodName);
         return extractMethodInfo(interfaceName, methodName,methodDoc);

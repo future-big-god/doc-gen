@@ -40,12 +40,13 @@ public class JavaDocModelInfosRecursiveParser {
 
     private void genModelInfoList(Type type) {
         Type realType=type.isPrimitive()?type:getRealType(type);
-        //正常参数的处理
-         handleArgusFields(realType);
         //判断是不是泛型，处理泛型
         if(!realType.equals(type)){
-            handleArgusFields(type);
+            genModelInfoList(realType);
         }
+        //正常参数的处理
+         handleArgusFields(type);
+         return;
     }
     private void handleArgusFields(Type realType) {
         if(realType.isPrimitive() || ParseUtils.isBaseType(realType.typeName())){
@@ -57,13 +58,13 @@ public class JavaDocModelInfosRecursiveParser {
         FieldDoc[] fieldDocs=realType.asClassDoc().fields(false);
         modelInfo.setFieldInfoList(buildFieldInfos(fieldDocs));
         for (FieldDoc fieldDoc:fieldDocs) {
-            if(fieldDoc.type().isPrimitive() || ParseUtils.isBaseType(fieldDoc.type().typeName())){
+            if(fieldDoc.type().isPrimitive() || ParseUtils.isBaseType(fieldDoc.type().typeName()) || ParseUtils.isBaseLetter(getRealType(fieldDoc.type()).typeName())){
                 continue;
             }
             //处理T的那种情况
-            if(ParseUtils.isBaseLetter(realType.typeName())){
-                continue;
-            }
+//            if(ParseUtils.isBaseLetter(realType.typeName())){
+//                continue;
+//            }
             genModelInfoList(fieldDoc.type());
         }
         modelInfos.add(modelInfo);
